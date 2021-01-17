@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 
 //// Mixins
 
@@ -18,7 +18,11 @@
 
 // Primary
 $bright-blue: hsl(220, 98%, 61%);
-$check-background: linear-gradient(to left, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+$check-background: linear-gradient(
+  to left,
+  hsl(192, 100%, 67%),
+  hsl(280, 87%, 65%)
+);
 
 // Light Theme
 $very-light-gray: hsl(0, 0%, 98%);
@@ -31,11 +35,32 @@ $very-dark-grayish-blue: hsl(235, 19%, 35%);
 
 $very-dark-blue: hsl(235, 21%, 11%);
 $very-dark-desaturated-blue: hsl(235, 24%, 19%);
-$light-grayish-blue: hsl(234, 39%, 85%);
+$light-grayish-blue-2: hsl(234, 39%, 85%);
 $light-grayish-blue--hover: hsl(236, 33%, 92%);
-$dark-grayish-blue: hsl(234, 11%, 52%);
-$very-dark-grayish-blue: hsl(233, 14%, 35%);
-$very-very-dark-grayish-blue: hsl(237, 14%, 26%);
+$dark-grayish-blue-2: hsl(234, 11%, 52%);
+$very-dark-grayish-blue-2: hsl(233, 14%, 35%);
+$very-dark-grayish-blue-3: hsl(237, 14%, 26%);
+
+// Variable
+
+$border-radius-standard: 5px;
+
+//// Extends
+
+%circle-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid $light-grayish-blue;
+}
+
+%todo-row {
+  align-items: center;
+  column-gap: 15px;
+  min-height: 4.2rem;
+  padding: 20px 25px;
+  background-color: $very-light-gray;
+}
 
 //// General
 
@@ -46,5 +71,98 @@ html {
 body {
   min-height: 100%;
   font-size: 1.125rem;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: $very-light-grayish-blue;
+}
+
+//// Header
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 50px 5%;
+  font-size: 32px;
+  font-weight: 700;
+  color: $very-light-gray;
+  letter-spacing: 10px;
+  position: absolute;
+  width: 100%;
+  height: 250px;
+  background: url("./components/images/bg-mobile-light.jpg"), $check-background;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+
+//// Main
+
+main {
+  padding-top: 130px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: 0 auto;
+  width: 90%;
+  row-gap: 20px;
+  font-weight: 700;
+}
+
+// Create Todo
+
+.todo-container {
+  border-radius: $border-radius-standard;
+  overflow: hidden;
+}
+
+.create-todo {
+  display: grid;
+  grid-template-columns: 1.5rem auto;
+  @extend %todo-row;
+  border-radius: $border-radius-standard;
+}
+
+.create-todo__icon {
+  @extend %circle-icon;
+}
+
+// Todo
+
+.todo {
+  display: grid;
+  grid-template-columns: 1.5rem auto 1.5rem;
+  color: $very-dark-grayish-blue;
+  border-bottom: 1px solid $light-grayish-blue;
+  @extend %todo-row;
+}
+
+.todo__icon {
+  @extend %circle-icon;
+}
+
+.todo__delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Todo Helper
+
+.todo-helper {
+  display: flex;
+  justify-content: space-between;
+  color: $dark-grayish-blue;
+  font-size: 1rem;
+  @extend %todo-row;
+}
+
+// Show Todo
+
+.show-todo {
+  display: flex;
+  justify-content: center;
+  border-radius: $border-radius-standard;
+  color: $very-dark-grayish-blue;
+  @extend %todo-row;
 }

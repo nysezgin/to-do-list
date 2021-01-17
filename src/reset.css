@@ -83,3 +83,14 @@ ul,
 ol {
   list-style: none;
 }
+
+button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  padding: 0;
+}
