@@ -4,7 +4,6 @@ import deleteImg from "../images/icon-cross.svg";
 export default function SingleTodo({
   id,
   text,
-  handleCompleted,
   handleDelete,
 }) {
   const [completed, setCompleted] = useState(false);
@@ -14,10 +13,7 @@ export default function SingleTodo({
         className={
           completed ? "todo__icon todo__icon--completed" : "todo__icon"
         }
-        onClick={() => {
-          setCompleted(!completed);
-          handleCompleted(id);
-        }}
+        onClick={() => setCompleted(!completed)}
       />
       <p
         className={
