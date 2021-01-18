@@ -87,9 +87,19 @@ ol {
 button {
   border: none;
   cursor: pointer;
-  background-color: transparent;
-  font-size: inherit;
+  background-color: inherit;
   color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  padding: 0;
+}
+
+input {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  font-size: inherit;
   font-weight: inherit;
   font-family: inherit;
   padding: 0;
