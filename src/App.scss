@@ -93,6 +93,10 @@ header {
   background-position: center;
   background-size: cover;
   z-index: -1;
+  @include desktop {
+    padding: 60px 20%;
+    background: url("./components/images/bg-desktop-light.jpg");
+  }
 }
 
 //// Main
@@ -107,6 +111,9 @@ main {
   width: 90%;
   row-gap: 20px;
   font-weight: 700;
+  @include desktop {
+    width: 60%;
+  }
 }
 
 // Create Todo
