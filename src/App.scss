@@ -160,6 +160,16 @@ main {
 
 .todo__icon {
   @extend %circle-icon;
+  transition: background-color 0.5s ease;
+}
+
+.todo__icon--completed {
+  background-color: $light-grayish-blue;
+}
+
+.todo__text--completed {
+  text-decoration: line-through;
+  color: $light-grayish-blue;
 }
 
 .todo__delete {

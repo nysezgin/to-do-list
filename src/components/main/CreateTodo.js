@@ -3,23 +3,23 @@ import SingleTodo from "../main/SingleTodo";
 import ListHelper from "./ListHelper";
 import { v4 as uuidv4 } from "uuid";
 
-
-export default function CreateTodo({isDesktop}) {
+export default function CreateTodo({ isDesktop }) {
+  //// Controlled Input
   const [input, setInput] = useState("");
   const [todoList, setTodoList] = useState([]);
-  // handle Submit
+  // Handle Submit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!input) {
       alert("Todo can't be empty!");
     } else {
       setTodoList((todoList) => {
-        return [...todoList, {id: uuidv4(), text: input}];
+        return [...todoList, { id: uuidv4(), text: input }];
       });
     }
     setInput("");
   };
-  // handle Delete
+  // Handle Delete
   const handleDelete = (id) => {
     const newTodoList = todoList.filter((todo) => todo.id !== id);
     setTodoList(newTodoList);
@@ -46,9 +46,16 @@ export default function CreateTodo({isDesktop}) {
       </form>
       <div className="todo-container">
         {todoList.map((todo) => (
-          <SingleTodo key={todo.id} {...todo} handleDelete={handleDelete} />
+          <SingleTodo
+            key={todo.id}
+            {...todo}
+            handleDelete={handleDelete}
+          />
         ))}
-        <ListHelper itemsLeft={todoList.length} isDesktop={isDesktop} />
+        <ListHelper
+          itemsLeft={todoList.length}
+          isDesktop={isDesktop}
+        />
       </div>
     </>
   );
