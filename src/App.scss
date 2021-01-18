@@ -93,9 +93,11 @@ header {
   background-position: center;
   background-size: cover;
   z-index: -1;
+  @include tablet {
+    background: url("./components/images/bg-desktop-light.jpg");
+  }
   @include desktop {
     padding: 60px 20%;
-    background: url("./components/images/bg-desktop-light.jpg");
   }
 }
 
@@ -142,6 +144,9 @@ main {
   color: $very-dark-grayish-blue;
   border-bottom: 1px solid $light-grayish-blue;
   @extend %todo-row;
+  @include desktop {
+    column-gap: 25px;
+  }
 }
 
 .todo__icon {
@@ -164,12 +169,24 @@ main {
   @extend %todo-row;
 }
 
+.todo-helper__items-left {
+  font-weight: 400;
+}
+
 // Show Todo
 
 .show-todo {
   display: flex;
   justify-content: center;
   border-radius: $border-radius-standard;
-  color: $very-dark-grayish-blue;
+  color: $dark-grayish-blue;
   @extend %todo-row;
+  @include desktop {
+    padding: 0;
+    min-height: auto;
+  }
+}
+
+.show-todo__button:hover {
+  color: $very-dark-grayish-blue;
 }
