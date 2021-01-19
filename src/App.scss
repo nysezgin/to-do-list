@@ -16,30 +16,34 @@
 
 //// Colors
 
+:root {
+  --clr-background: hsl(236, 33%, 92%);
+  --clr-todo-background: hsl(0, 0%, 98%);
+  --clr-text: hsl(235, 19%, 35%);
+  --background-mobile: url("./components/images/bg-mobile-light.jpg");
+  --background-desktop: url("./components/images/bg-desktop-light.jpg");
+}
+
+.dark-theme {
+  --clr-background: hsl(235, 21%, 11%);
+  --clr-todo-background: hsl(235, 24%, 19%);
+  --clr-text: hsl(236, 33%, 92%);
+  --background-mobile: url("./components/images/bg-mobile-dark.jpg");
+  --background-desktop: url("./components/images/bg-desktop-dark.jpg");
+}
+
+.light-theme {
+  --clr-background: hsl(236, 33%, 92%);
+  --clr-todo-background: hsl(0, 0%, 98%);
+  --clr-text: hsl(235, 19%, 35%);
+  --background-mobile: url("./components/images/bg-mobile-light.jpg");
+  --background-desktop: url("./components/images/bg-desktop-light.jpg");
+}
+
 // Primary
 $bright-blue: hsl(220, 98%, 61%);
-$check-background: linear-gradient(
-  to left,
-  hsl(192, 100%, 67%),
-  hsl(280, 87%, 65%)
-);
-
-// Light Theme
-$very-light-gray: hsl(0, 0%, 98%);
-$very-light-grayish-blue: hsl(236, 33%, 92%);
 $light-grayish-blue: hsl(233, 11%, 84%);
 $dark-grayish-blue: hsl(236, 9%, 61%);
-$very-dark-grayish-blue: hsl(235, 19%, 35%);
-
-// Dark Theme
-
-$very-dark-blue: hsl(235, 21%, 11%);
-$very-dark-desaturated-blue: hsl(235, 24%, 19%);
-$light-grayish-blue-2: hsl(234, 39%, 85%);
-$light-grayish-blue--hover: hsl(236, 33%, 92%);
-$dark-grayish-blue-2: hsl(234, 11%, 52%);
-$very-dark-grayish-blue-2: hsl(233, 14%, 35%);
-$very-dark-grayish-blue-3: hsl(237, 14%, 26%);
 
 // Variable
 
@@ -59,7 +63,8 @@ $border-radius-standard: 5px;
   column-gap: 15px;
   min-height: 4.2rem;
   padding: 20px 25px;
-  background-color: $very-light-gray;
+  background-color: var(--clr-todo-background);
+  transition: background-color 0.5s ease;
 }
 
 //// General
@@ -72,7 +77,8 @@ body {
   min-height: 100%;
   font-size: 1.125rem;
   font-family: "Josefin Sans", sans-serif;
-  background-color: $very-light-grayish-blue;
+  background-color: var(--clr-background);
+  transition: background-color 0.5s ease;
 }
 
 //// Header
@@ -80,17 +86,16 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding: 60px 0 30px 0;
   margin: 0 5%;
-  font-size: 32px;
-  font-weight: 700;
-  color: $very-light-gray;
-  letter-spacing: 10px;
+  color: hsl(0, 0%, 98%);
   @include tablet {
     margin: 0 20%;
   }
 }
+
+// Header Background
 
 .header__background {
   position: absolute;
@@ -99,12 +104,52 @@ header {
   top: 0;
   left: 0;
   z-index: -1;
-  background: url("./components/images/bg-mobile-light.jpg"), $check-background;
+  background: var(--background-mobile);
   background-position: center;
   background-size: cover;
   @include tablet {
-    background: url("./components/images/bg-desktop-light.jpg");
+    background: var(--background-desktop);
   }
+}
+
+// Header Title
+
+.header__title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 10px;
+}
+
+// Header Light/Dark Theme Toggle
+
+.header__toggle-wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  padding: 5px 0;
+}
+
+.header__toggle-name {
+  font-size: 12px;
+}
+
+.header__toggle-image-wrapper {
+  position: relative;
+  height: 26px;
+  width: 26px;
+}
+
+.header__toggle-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.header__toggle-image--deactive {
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 //// Main
@@ -138,10 +183,10 @@ main {
 
 .create-todo__icon {
   @extend %circle-icon;
-  transition: background-color 0.5s ease;
 }
 
 .create-todo__icon--active {
+  transition: background-color 0.5s ease;
   background-color: green;
 }
 
@@ -155,8 +200,8 @@ main {
 .todo {
   display: grid;
   grid-template-columns: 1.5rem auto 1.5rem;
-  color: $very-dark-grayish-blue;
-  border-bottom: 1px solid $light-grayish-blue;
+  color: var(--clr-text);
+  border-bottom: 1px solid $dark-grayish-blue;
   @extend %todo-row;
   @include desktop {
     column-gap: 25px;
@@ -165,7 +210,6 @@ main {
 
 .todo__icon {
   @extend %circle-icon;
-  transition: background-color 0.5s ease;
 }
 
 .todo__icon--completed {
@@ -212,5 +256,5 @@ main {
 }
 
 .show-todo__button:hover {
-  color: $very-dark-grayish-blue;
+  color: var(--clr-text);
 }
