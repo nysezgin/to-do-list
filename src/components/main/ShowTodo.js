@@ -1,11 +1,26 @@
-import React from 'react'
+import React from "react";
 
-export default function ShowTodo() {
-    return (
-      <div className="show-todo">
-        <button className="show-todo__button">All</button>
-        <button className="show-todo__button">Active</button>
-        <button className="show-todo__button">Completed</button>
-      </div>
-    );
+export default function ShowTodo({ handleFilter }) {
+  return (
+    <div className="show-todo">
+      <button
+        className="show-todo__button"
+        onClick={() => handleFilter("all")}
+      >
+        All
+      </button>
+      <button
+        className="show-todo__button"
+        onClick={() => handleFilter("active")}
+      >
+        Active
+      </button>
+      <button
+        className="show-todo__button"
+        onClick={() => handleFilter("completed")}
+      >
+        Completed
+      </button>
+    </div>
+  );
 }

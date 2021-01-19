@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import deleteImg from "../images/icon-cross.svg";
 
 export default function SingleTodo({
   id,
   text,
+  completed,
+  handleCompleted,
   handleDelete,
 }) {
-  const [completed, setCompleted] = useState(false);
   return (
     <div className="todo">
       <button
         className={
           completed ? "todo__icon todo__icon--completed" : "todo__icon"
         }
-        onClick={() => setCompleted(!completed)}
+        onClick={() => handleCompleted(id)}
       />
       <p
         className={
