@@ -242,6 +242,10 @@ main {
   font-weight: 400;
 }
 
+.todo-helper__clear-button:hover {
+  color: var(--clr-text);
+}
+
 // Show Todo
 
 .show-todo {
