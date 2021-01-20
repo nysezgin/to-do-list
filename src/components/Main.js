@@ -4,20 +4,10 @@ import SingleTodo from "./main/SingleTodo";
 import ListHelper from "./main/ListHelper";
 import { v4 as uuidv4 } from "uuid";
 
-export default function Main() {
-  //// Handle Window Width for Responsive Design
-  const [size, setSize] = useState(window.innerWidth);
-  const handleSize = () => setSize(window.innerWidth);
-  const isDesktop = size >= 1024;
-  useEffect(() => {
-    window.addEventListener("resize", handleSize);
-    return () => {
-      window.removeEventListener("resize", handleSize);
-    };
-  }, []);
+export default function Main({isDesktop}) {
   //// Controlled Input
   const [input, setInput] = useState("");
-  const [todoList, setTodoList] = useState([]); // The data here will be stored until deleted
+  const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem("todo-list")) || []);
   const [shownTodoList, setShownTodoList] = useState([]); // The data here will be shown according to the filter
   // Handle Submit
   const handleSubmit = (e) => {
@@ -33,6 +23,7 @@ export default function Main() {
   };
   useEffect(() => {
     setShownTodoList(todoList);
+    localStorage.setItem("todo-list", JSON.stringify(todoList));
   }, [todoList]);
   // Handle Delete
   const handleDelete = (id) => {
