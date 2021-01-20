@@ -4,10 +4,12 @@ import SingleTodo from "./main/SingleTodo";
 import ListHelper from "./main/ListHelper";
 import { v4 as uuidv4 } from "uuid";
 
-export default function Main({isDesktop}) {
+export default function Main({ isDesktop }) {
   //// Controlled Input
   const [input, setInput] = useState("");
-  const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem("todo-list")) || []);
+  const [todoList, setTodoList] = useState(
+    JSON.parse(localStorage.getItem("todo-list")) || []
+  );
   const [shownTodoList, setShownTodoList] = useState([]); // The data here will be shown according to the filter
   // Handle Submit
   const handleSubmit = (e) => {
@@ -16,7 +18,7 @@ export default function Main({isDesktop}) {
       alert("Todo can't be empty!");
     } else {
       setTodoList((todoList) => {
-        return [...todoList, { id: uuidv4(), completed: false, text: input }];
+        return [...todoList, { id: uuidv4(), isCompleted: false, text: input }];
       });
     }
     setInput("");
@@ -33,14 +35,14 @@ export default function Main({isDesktop}) {
   // Handle Completed
   const handleCompleted = (id) => {
     const completedIndex = todoList.findIndex((todo) => todo.id === id);
-    todoList[completedIndex].completed = !todoList[completedIndex].completed;
+    todoList[completedIndex].isCompleted = !todoList[completedIndex].isCompleted;
     setTodoList([...todoList]);
   };
   // Handle Clear Completed
   const handleClearCompleted = () => {
-    const newTodoList = todoList.filter((todo) => todo.completed === false);
+    const newTodoList = todoList.filter((todo) => todo.isCompleted === false);
     setTodoList(newTodoList);
-  }
+  };
   // Handle Filter (All, Active, Completed)
   const handleFilter = (show) => {
     if (show === "all") {
@@ -48,13 +50,13 @@ export default function Main({isDesktop}) {
     }
     if (show === "active") {
       const newShownTodoList = todoList.filter(
-        (todo) => todo.completed === false
+        (todo) => todo.isCompleted === false
       );
       setShownTodoList(newShownTodoList);
     }
     if (show === "completed") {
       const newShownTodoList = todoList.filter(
-        (todo) => todo.completed === true
+        (todo) => todo.isCompleted === true
       );
       setShownTodoList(newShownTodoList);
     }
@@ -89,7 +91,7 @@ export default function Main({isDesktop}) {
           />
         ))}
         <ListHelper
-          itemsLeft={todoList.filter((todo) => todo.completed === false).length}
+          itemsLeft={todoList.filter((todo) => todo.isCompleted === false).length}
           isDesktop={isDesktop}
           handleClearCompleted={handleClearCompleted}
           handleFilter={handleFilter}
