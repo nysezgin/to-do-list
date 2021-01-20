@@ -64,7 +64,6 @@ $border-radius-standard: 5px;
   min-height: 4.2rem;
   padding: 20px 25px;
   background-color: var(--clr-todo-background);
-  transition: background-color 0.5s ease;
 }
 
 //// General
@@ -78,7 +77,6 @@ body {
   font-size: 1.125rem;
   font-family: "Josefin Sans", sans-serif;
   background-color: var(--clr-background);
-  transition: background-color 0.5s ease;
 }
 
 //// Header
