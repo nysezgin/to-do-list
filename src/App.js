@@ -4,16 +4,21 @@ import {useState, useEffect} from "react"
 import Header from "./components/Header";
 import Main from "./components/Main";
 
-const getStorageTheme = () => {
-  let theme = "light-theme";
-  if (localStorage.getItem("theme")) {
-    theme = localStorage.getItem("theme");
-  }
-  return theme;
-};
-
 function App() {
-  const [theme, setTheme] = useState(getStorageTheme());
+  //// Handle Window Width for Responsive Design
+  const [size, setSize] = useState(window.innerWidth);
+  const handleSize = () => setSize(window.innerWidth);
+  const isDesktop = size >= 1024;
+  useEffect(() => {
+    window.addEventListener("resize", handleSize);
+    return () => {
+      window.removeEventListener("resize", handleSize);
+    };
+  }, []);
+  // Store theme locally
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light-theme"
+  );
 
   const toggleTheme = () => {
     if (theme === "light-theme") {
@@ -27,10 +32,11 @@ function App() {
     document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
+
   return (
     <div className="App">
       <Header theme={theme} toggleTheme={toggleTheme} />
-      <Main />
+      <Main isDesktop={isDesktop} />
     </div>
   );
 }
