@@ -35,7 +35,8 @@ export default function Main({ isDesktop }) {
   // Handle Completed
   const handleCompleted = (id) => {
     const completedIndex = todoList.findIndex((todo) => todo.id === id);
-    todoList[completedIndex].isCompleted = !todoList[completedIndex].isCompleted;
+    todoList[completedIndex].isCompleted = !todoList[completedIndex]
+      .isCompleted;
     setTodoList([...todoList]);
   };
   // Handle Clear Completed
@@ -60,6 +61,21 @@ export default function Main({ isDesktop }) {
       );
       setShownTodoList(newShownTodoList);
     }
+  };
+  // Handle Drop
+  const handleDrop = (e, id) => {
+    e.preventDefault();
+    const idData = e.dataTransfer.getData("id");
+    const idList = [].concat(todoList).map((todo) => todo.id)
+    const draggedOnIndex = idList.indexOf(id);
+    const draggedIndex = idList.indexOf(idData);
+    const newTodoList = todoList;
+    newTodoList.splice(
+      draggedOnIndex,
+      0,
+      newTodoList.splice([draggedIndex], 1)[0]
+    );
+    setTodoList([...newTodoList])
   };
   return (
     <main>
@@ -88,16 +104,22 @@ export default function Main({ isDesktop }) {
             {...todo}
             handleCompleted={handleCompleted}
             handleDelete={handleDelete}
+            handleDrop={handleDrop}
           />
         ))}
         <ListHelper
-          itemsLeft={todoList.filter((todo) => todo.isCompleted === false).length}
+          itemsLeft={
+            todoList.filter((todo) => todo.isCompleted === false).length
+          }
           isDesktop={isDesktop}
           handleClearCompleted={handleClearCompleted}
           handleFilter={handleFilter}
         />
       </div>
       {!isDesktop && <ShowTodo handleFilter={handleFilter} />}
+      <div className="bottom-info">
+        Drag and drop to reorder the list
+      </div>
     </main>
   );
 }

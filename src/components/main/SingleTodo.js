@@ -7,9 +7,17 @@ export default function SingleTodo({
   isCompleted,
   handleCompleted,
   handleDelete,
+  handleDrop,
 }) {
   return (
-    <div className="todo">
+    <div
+      id={id}
+      className="todo"
+      draggable="true"
+      onDragOver={(e) => e.preventDefault()}
+      onDragStart={(e) => e.dataTransfer.setData("id", e.target.id)}
+      onDrop={(e) => handleDrop(e, id)}
+    >
       <button
         className={
           isCompleted ? "todo__icon todo__icon--completed" : "todo__icon"
