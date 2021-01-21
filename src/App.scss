@@ -213,12 +213,12 @@ main {
 }
 
 .todo__icon--completed {
-  background-color: $light-grayish-blue;
+  background-color: $dark-grayish-blue;
 }
 
 .todo__text--completed {
   text-decoration: line-through;
-  color: $light-grayish-blue;
+  color: $dark-grayish-blue;
 }
 
 .todo__delete {
