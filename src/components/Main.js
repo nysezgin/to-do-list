@@ -117,9 +117,9 @@ export default function Main({ isDesktop }) {
         />
       </div>
       {!isDesktop && <ShowTodo handleFilter={handleFilter} />}
-      <div className="bottom-info">
-        Drag and drop to reorder the list
-      </div>
+      {isDesktop && (
+        <div className="bottom-info">Drag and drop to reorder the list</div>
+      )}
     </main>
   );
 }
