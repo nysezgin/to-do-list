@@ -85,23 +85,13 @@ ol {
   list-style: none;
 }
 
-button {
-  border: none;
-  cursor: pointer;
-  background-color: inherit;
-  color: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  font-family: inherit;
-  padding: 0;
-}
-
-input {
+button, input {
   border: none;
   background-color: inherit;
   color: inherit;
   font-size: inherit;
   font-weight: inherit;
   font-family: inherit;
+  margin: 0;
   padding: 0;
 }
